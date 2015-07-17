@@ -8,7 +8,7 @@
 
 dir=~/.dotfiles                    # dotfiles directory
 olddir=~/.dotfiles_old             # old dotfiles backup directory
-files=".bashrc .emacs.d .bash_profile .profile .bash_aliases"    # list of files/folders to symlink in homedir
+files=".bashrc .emacs.d .bash_profile .profile .bash_aliases .test"    # list of files/folders to symlink in homedir
 
 ##########
 
@@ -25,8 +25,10 @@ echo "...done"
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
 for file in $files; do
     echo "Moving any existing dotfiles from ~ to $olddir"
-    if [ -b "$file" ]
-	then
+    echo "file name : ~/$file"
+    if [ -a ~/$file ]
+    then
+        echo "file exists!!, lets's move it to the old folder"
   	mv ~/$file $olddir/
 	fi 
     echo "Creating symlink to $file in home directory."
